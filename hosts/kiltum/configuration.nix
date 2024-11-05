@@ -39,6 +39,18 @@
         STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
       };
   };
+systemd.sleep.extraConfig = ''
+  HibernateDelaySec=30s # very low value to test suspend-then-hibernate
+  SuspendState=mem # suspend2idle is buggy :(
+'';
+
+services.logind.lidSwitch = "hibernate";
+
+services.btrfs.autoScrub = {
+  enable = true;
+  interval = "monthly";
+  fileSystems = [ "/" ];
+};
 
 system.stateVersion = "24.05"; 
 }
