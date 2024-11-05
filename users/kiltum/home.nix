@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # TODO please change the username & home directory to your own
   home.username = "kiltum";
   home.homeDirectory = "/home/kiltum";
 
@@ -152,10 +151,10 @@ programs.ssh = {
     controlMaster = "yes";
     controlPersist = "5m";
     matchBlocks = {
-    "192.168.*" = {
-    user = "kiltum";
-    };
-    };
+        "192.168.*" = {
+            user = "kiltum";
+        };
+        };
     };
 services.ssh-agent.enable = true;
 
