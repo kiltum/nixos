@@ -11,3 +11,7 @@ sudo nix \
     --write-efi-boot-entries \
     --disk main "$DISK_DEVICE"
 ```
+
+```
+sudo nixos-rebuild switch
+```
