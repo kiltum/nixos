@@ -9,24 +9,31 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, disko, ... }: {
-    nixosConfigurations = {
-      kiltum = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/common.nix
-          ./hosts/kiltum/configuration.nix
-          ./users/kiltum/common.nix
-          ./hosts/kiltum/disk-config.nix
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.kiltum = import ./users/kiltum/home.nix;
-          }
-        ];
+  outputs =
+    inputs@{
+      nixpkgs,
+      home-manager,
+      disko,
+      ...
+    }:
+    {
+      nixosConfigurations = {
+        kiltum = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/common.nix
+            ./hosts/kiltum/configuration.nix
+            ./users/kiltum/common.nix
+            ./hosts/kiltum/disk-config.nix
+            disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.kiltum = import ./users/kiltum/home.nix;
+            }
+          ];
+        };
       };
     };
-  };
 }
