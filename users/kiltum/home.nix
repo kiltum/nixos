@@ -235,9 +235,29 @@ programs.firefox = {
     toolbar = true;
     bookmarks = [
     {
-    name = "Home dashboard";
+    name = "Home";
     url = "http://influxdb.iot.hlevnoe.lan:8086/orgs/adc33b18fbba5f40/dashboards/0d51d8f8ddf70000?lower=now%28%29+-+7d";
-  }
+    }
+    {
+    name = "Phoronix";
+    url = "https://www.phoronix.com/";
+    }
+    {
+    name = "3dnews";
+    url = "https://3dnews.ru/";
+    }
+    {
+    name = "ixbt";
+    url = "https://www.ixbt.com/";
+    }
+    {
+    name = "mysku";
+    url = "https://mysku.club/";
+    }
+    {
+    name = "facebook";
+    url = "https://www.facebook.com/";
+    }
 
       {
         name = "wiki";
