@@ -136,6 +136,7 @@
         gp="git push";
         gs="git status";
         gwip="git commit -am \"-- WIP ---\"";
+        nrs="sudo nixos-rebuild switch";
     };
   };
   programs.ssh = {
@@ -158,8 +159,98 @@ services.nextcloud-client = {
     startInBackground = true;
     };
 
-    programs.firefox = {
+programs.firefox = {
     enable = true;
+    profiles = {
+        default = {
+          id = 0;
+          name = "default";
+          isDefault = true;
+          settings = {
+            # "browser.startup.homepage" = "https://duckduckgo.com";
+            "browser.search.defaultenginename" = "DuckDuckGo";
+            "browser.search.order.1" = "DuckDuckGo";
+
+            "signon.rememberSignons" = false;
+            "widget.use-xdg-desktop-portal.file-picker" = 1;
+            "browser.aboutConfig.showWarning" = false;
+            "browser.compactmode.show" = true;
+            "browser.cache.disk.enable" = false; # Be kind to hard drive
+            
+            "privacy.donottrackheader.enabled" = true;
+            "privacy.trackingprotection.enabled" = true;
+            "privacy.trackingprotection.socialtracking.enabled" = true;
+            "privacy.partition.network_state.ocsp_cache" = true;
+
+            # Disable all sorts of telemetry
+            "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+            "browser.newtabpage.activity-stream.telemetry" = false;
+            "browser.ping-centre.telemetry" = false;
+            "toolkit.telemetry.archive.enabled" = false;
+            "toolkit.telemetry.bhrPing.enabled" = false;
+            "toolkit.telemetry.enabled" = false;
+            "toolkit.telemetry.firstShutdownPing.enabled" = false;
+            "toolkit.telemetry.hybridContent.enabled" = false;
+            "toolkit.telemetry.newProfilePing.enabled" = false;
+            "toolkit.telemetry.reportingpolicy.firstRun" = false;
+            "toolkit.telemetry.shutdownPingSender.enabled" = false;
+            "toolkit.telemetry.unified" = false;
+            "toolkit.telemetry.updatePing.enabled" = false;
+
+            # As well as Firefox 'experiments'
+            "experiments.activeExperiment" = false;
+            "experiments.enabled" = false;
+            "experiments.supported" = false;
+            "network.allow-experiments" = false;
+
+            # Disable Pocket Integration
+            "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+            "extensions.pocket.enabled" = false;
+            "extensions.pocket.api" = "";
+            "extensions.pocket.oAuthConsumerKey" = "";
+            "extensions.pocket.showHome" = false;
+            "extensions.pocket.site" = "";
+
+            "apz.gtk.kinetic_scroll.enabled" = false; # stop kinetic scrolling
+            
+            # Firefox 75+ remembers the last workspace it was opened on as part of its session management.
+            # This is annoying, because I can have a blank workspace, click Firefox from the launcher, and
+            # then have Firefox open on some other workspace.
+            "widget.disable-workspace-management" = true;
+          };
+          search = {
+            force = true;
+            default = "DuckDuckGo";
+            order = [ "DuckDuckGo" "Google" ];
+          };
+        };
+      };
+
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      DontCheckDefaultBrowser = true;
+      DisablePocket = true;
+      SearchBar = "unified";
+      ExtensionSettings = with builtins;
+        let extension = shortId: uuid: {
+          name = uuid;
+          value = {
+            install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+            installation_mode = "normal_installed";
+          };
+        };
+        in listToAttrs [
+          (extension "ublock-origin" "uBlock0@raymondhill.net")
+          (extension "keepassxc-browser" "keepassxc-browser@keepassxc.org")
+          (extension "plasma-integration" "plasma-browser-integration@kde.org")
+        ];
+        # To add additional extensions, find it on addons.mozilla.org, find
+        # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
+        # Then, download the XPI by filling it in to the install_url template, unzip it,
+        # run `jq .browser_specific_settings.gecko.id manifest.json` or
+        # `jq .applications.gecko.id manifest.json` to get the UUID
+  };
     
 };
 
