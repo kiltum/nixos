@@ -27,3 +27,11 @@ sudo rm /etc/nixos
 sudo sudo ln -s `pwd` /etc/nixos
 sudo nixos-rebuild switch
 ```
+
+##
+
+Try to save AL sensetive info  in keepassxc
+
+```
+keepassxc-cli attachment-export ~/Nextcloud/keepassxc.kdbx SSH\ ключи/GPG gnupg.tar.gz 11
+```
