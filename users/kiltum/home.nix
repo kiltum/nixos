@@ -48,6 +48,14 @@
     pciutils # lspci
     usbutils # lsusb
     keepassxc
+    telegram-desktop
+    vscode
+    vscode-extensions.redhat.ansible
+    vscode-extensions.ms-python.python
+    python3
+    ansible
+    ansible-lint
+
   ];
 
   # basic configuration of git, please change to your own
@@ -59,6 +67,11 @@
   #  signing.key = "FILL";
   # signing.signByDefault = true;
   };
+
+  programs.gpg = {
+    enable = true;
+    };
+
   services.gpg-agent.enable = true;
 
   programs.bash = {
@@ -99,10 +112,6 @@ services.ssh-agent.enable = true;
 services.nextcloud-client = {
     enable = true;
     startInBackground = true;
-    };
-
-    programs.gpg = {
-    enable = true;
     };
 
     programs.firefox = {
