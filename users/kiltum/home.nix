@@ -162,6 +162,7 @@ services.nextcloud-client = {
 
 programs.firefox = {
     enable = true;
+
     profiles = {
         default = {
           id = 0;
@@ -227,6 +228,26 @@ programs.firefox = {
         };
       };
 
+    profiles.default.bookmarks = [
+
+  {
+    name = "My bookmarks";
+    toolbar = true;
+    bookmarks = [
+    {
+    name = "Home dashboard";
+    url = "http://influxdb.iot.hlevnoe.lan:8086/orgs/adc33b18fbba5f40/dashboards/0d51d8f8ddf70000?lower=now%28%29+-+7d";
+  }
+
+      {
+        name = "wiki";
+        tags = [ "wiki" "nix" ];
+        url = "https://wiki.nixos.org/";
+      }
+    ];
+  }
+];
+
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -245,6 +266,8 @@ programs.firefox = {
           (extension "ublock-origin" "uBlock0@raymondhill.net")
           (extension "keepassxc-browser" "keepassxc-browser@keepassxc.org")
           (extension "plasma-integration" "plasma-browser-integration@kde.org")
+          (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
+          (extension "facebook-container" "@contain-facebook")
         ];
         # To add additional extensions, find it on addons.mozilla.org, find
         # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
@@ -254,6 +277,8 @@ programs.firefox = {
   };
     
 };
+
+
 
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;

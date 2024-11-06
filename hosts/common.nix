@@ -29,4 +29,7 @@
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
   security.pam.sshAgentAuth.enable = true;
+  services.pipewire.enable = true;
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 }
