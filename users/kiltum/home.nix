@@ -55,7 +55,7 @@
     python3
     ansible
     ansible-lint
-
+    pinentry-all
   ];
 
   # basic configuration of git, please change to your own
@@ -111,13 +111,14 @@
   };
 
   
-  serbices.gpg-agent = {
+  services.gpg-agent = {
         enable = true;
         enableSshSupport = true;
         defaultCacheTtl = 86400;
         maxCacheTtl = 2592000;
+        pinentryPackage = pkgs.pinentry-curses;
       };
-  
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
