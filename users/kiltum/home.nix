@@ -143,6 +143,7 @@
       gs = "git status";
       gwip = "git commit -am \"-- WIP ---\"";
       nrs = "sudo nixos-rebuild switch";
+      nfu = "nix flake update";
     };
   };
   programs.ssh = {

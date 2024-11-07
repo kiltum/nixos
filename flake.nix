@@ -26,6 +26,7 @@
             ./users/kiltum/common.nix
             ./hosts/kiltum/disk-config.nix
             disko.nixosModules.disko
+            ./hosts/kiltum/huawei-sound.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

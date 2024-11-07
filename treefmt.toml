@@ -3,3 +3,5 @@
 [formatter.nixfmt-rfc-style]
 command = "nixfmt"
 includes = ["*.nix"]
+
+#nd
