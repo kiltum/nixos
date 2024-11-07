@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 {
   config,
   lib,
@@ -26,6 +22,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
 
   networking.hostName = "kiltum";
 
@@ -53,7 +50,7 @@
     HibernateMode=platform shutdown
     HibernateDelaySec=30s
   '';
-  services.logind.suspendKey = "hibernate";
+
   services.logind.lidSwitch = "hibernate";
   services.logind.lidSwitchExternalPower = "suspend-then-hibernate";
   # enable debug for logind
@@ -63,6 +60,17 @@
     enable = true;
     interval = "monthly";
     fileSystems = [ "/" ];
+  };
+
+  security.rtkit.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
   };
 
   system.stateVersion = "24.05";

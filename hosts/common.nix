@@ -25,6 +25,8 @@
     mc
     nixfmt-rfc-style
     treefmt
+    traceroute
+    mtr
   ];
   nix.settings.experimental-features = [
     "nix-command"
@@ -34,7 +36,8 @@
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
   security.pam.sshAgentAuth.enable = true;
-  services.pipewire.enable = true;
+  # look like in should be anable by other packages
+  #services.pipewire.enable = true;
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   nix.settings.auto-optimise-store = true;
