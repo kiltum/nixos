@@ -27,6 +27,8 @@
     treefmt
     traceroute
     mtr
+    alsa-utils # for fix sound troubles
+    alsa-tools
   ];
   nix.settings.experimental-features = [
     "nix-command"
