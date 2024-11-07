@@ -49,11 +49,15 @@
     };
   };
   systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30s # very low value to test suspend-then-hibernate
-    SuspendState=mem # suspend2idle is buggy :(
+    AllowSuspendThenHibernate=yes
+    HibernateMode=platform shutdown
+    HibernateDelaySec=30s
   '';
-
+  services.logind.suspendKey = "hibernate";
   services.logind.lidSwitch = "hibernate";
+  services.logind.lidSwitchExternalPower = "suspend-then-hibernate";
+  # enable debug for logind
+  #systemd.services.systemd-logind.environment.SYSTEMD_LOG_LEVEL = "debug";
 
   services.btrfs.autoScrub = {
     enable = true;
