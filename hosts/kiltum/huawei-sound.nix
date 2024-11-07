@@ -1,4 +1,11 @@
-{ lib, pkgs }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+
 with lib;
 
 let
@@ -6,8 +13,12 @@ let
 in
 {
   systemd.services.huawei = {
+    enable = true;
+    description = "Huawei soundcard headphones monitor";
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = makeScript ../../scripts/sound.sh;
+      Restart = "always";
     };
   };
 }

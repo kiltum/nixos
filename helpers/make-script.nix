@@ -4,9 +4,9 @@ with builtins;
 (
   path:
   let
-    shellEscape = s: (replaceChars [ "\\" ] [ "\\\\" ] s);
+    shellEscape = s: (replaceStrings [ "\\" ] [ "\\\\" ] s);
     scriptName =
-      replaceChars
+      replaceStrings
         [
           "\\"
           "@"
