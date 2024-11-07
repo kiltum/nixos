@@ -29,6 +29,7 @@
     mtr
     alsa-utils # for fix sound troubles
     alsa-tools
+    procps
   ];
   nix.settings.experimental-features = [
     "nix-command"

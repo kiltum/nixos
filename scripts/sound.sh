@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/etc/profiles/per-user/kiltum/bin/bash
+
 set -e
 
 # [COMMENTS]
@@ -16,6 +17,7 @@ set -e
 # Headphone Jack 0x16 is controlled with some weird stuff so it should be enabled with GPIO commands for Audio Group 0x01.
 # Internal Speaker 0x17 is coupled with Headphone Jack 0x16 so it should be explicitly disabled with EAPD/BTL Enable command.
 #
+export PATH=/run/current-system/sw/bin/:$PATH
 
 # ensures script can run only once at a time
 pidof -o %PPID -x $0 >/dev/null && echo "Script $0 already running" && exit 1
