@@ -11,4 +11,9 @@
   users.users.kiltum.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIwTbklxgidWB5w+tpw6aRE2ZZuJdpdyOqGWX44Duu8G kiltum@kiltum.tech"
   ];
+  fonts.packages = with pkgs; [
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+  ];
 }

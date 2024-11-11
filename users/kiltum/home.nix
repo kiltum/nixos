@@ -19,6 +19,11 @@
     recursive = true;
   };
 
+  home.file.".config/kitty/" = {
+    source = ../../kitty;
+    recursive = true;
+  };
+
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
   #     xxx
@@ -232,6 +237,7 @@
           "toolkit.telemetry.shutdownPingSender.enabled" = false;
           "toolkit.telemetry.unified" = false;
           "toolkit.telemetry.updatePing.enabled" = false;
+          "dom.private-attribution.submission.enabled" = false;
 
           # As well as Firefox 'experiments'
           "experiments.activeExperiment" = false;
@@ -339,6 +345,32 @@
       # `jq .applications.gecko.id manifest.json` to get the UUID
     };
 
+  };
+
+  programs.kitty = {
+  enable = true;
+  shellIntegration.enableBashIntegration = false; # i enabled it below
+
+  settings = {
+  font_family="Fira Code";
+font_size=14;
+cursor_shape="block";
+cursor_shape_unfocused="hollow";
+shell_integration="no-cursor";
+scrollback_lines=10000;
+sync_to_monitor="yes";
+remember_window_size="yes";
+initial_window_width=800;
+initial_window_height=600;
+tab_bar_style="slant";
+update_check_interval=0;
+term="xterm-256color";
+paste_actions="quote-urls-at-prompt";
+background_opacity=1;
+confirm_os_window_close=0;
+include="theme.conf";
+
+  };
   };
 
   home.stateVersion = "24.05";
