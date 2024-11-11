@@ -14,6 +14,11 @@
   #   executable = true;  # make all files executable
   # };
 
+  home.file.".bashrc.d/" = {
+    source = ../../bashrc;
+    recursive = true;
+  };
+
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
   #     xxx
@@ -131,7 +136,23 @@
     #    bashrcExtra = ''
     #      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     #    '';
+    bashrcExtra = ''
+            HISTTIMEFORMAT='%d/%m/%y %T '
+            # User specific aliases and functions
+      if [ -d ~/.bashrc.d ]; then
+              for rc in ~/.bashrc.d/*; do
+                      if [ -f "$rc" ]; then
+                              . "$rc"
+                      fi
+              done
+      fi
 
+      unset rc
+
+    '';
+    #initExtra=""
+    historyFileSize = -1;
+    historySize = -1;
     # set some aliases, feel free to add more or remove some
     shellAliases = {
       d = "cd ~/Desktop";
@@ -144,6 +165,7 @@
       gwip = "git commit -am \"-- WIP ---\"";
       nrs = "sudo nixos-rebuild switch";
       nfu = "nix flake update";
+      ls = "ls --color=auto -h --group-directories-first";
     };
 
   };
@@ -151,7 +173,7 @@
     EDITOR = "vim";
     RESTIC_REPOSITORY_FILE = "/etc/nixos/hosts/kiltum/restic_repository_file";
     RESTIC_PASSWORD_FILE = "/etc/nixos/hosts/kiltum/restic_password_file";
-    };
+  };
   programs.ssh = {
     enable = true;
     forwardAgent = true;
