@@ -348,29 +348,29 @@
   };
 
   programs.kitty = {
-  enable = true;
-  shellIntegration.enableBashIntegration = false; # i enabled it below
+    enable = true;
+    shellIntegration.enableBashIntegration = false; # i enabled it below
 
-  settings = {
-  font_family="Fira Code";
-font_size=14;
-cursor_shape="block";
-cursor_shape_unfocused="hollow";
-shell_integration="no-cursor";
-scrollback_lines=10000;
-sync_to_monitor="yes";
-remember_window_size="yes";
-initial_window_width=800;
-initial_window_height=600;
-tab_bar_style="slant";
-update_check_interval=0;
-term="xterm-256color";
-paste_actions="quote-urls-at-prompt";
-background_opacity=1;
-confirm_os_window_close=0;
-include="theme.conf";
+    settings = {
+      font_family = "Fira Code";
+      font_size = 12;
+      cursor_shape = "block";
+      cursor_shape_unfocused = "hollow";
+      shell_integration = "no-cursor";
+      scrollback_lines = 10000;
+      sync_to_monitor = "yes";
+      remember_window_size = "yes";
+      initial_window_width = 800;
+      initial_window_height = 600;
+      tab_bar_style = "slant";
+      update_check_interval = 0;
+      term = "xterm-256color";
+      paste_actions = "quote-urls-at-prompt";
+      background_opacity = 1;
+      confirm_os_window_close = 0;
+      include = "theme.conf";
 
-  };
+    };
   };
 
   home.stateVersion = "24.05";
