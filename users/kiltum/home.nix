@@ -144,7 +144,15 @@
       gwip = "git commit -am \"-- WIP ---\"";
       nrs = "sudo nixos-rebuild switch";
       nfu = "nix flake update";
+      b = "cd ~ && .config/restic/restic.sh";
     };
+
+  };
+  home.sessionVariables = {
+    EDITOR = "vim";
+    RESTIC_REPOSITORY = "rest:https://kiltumbook:0awSYPGZ@restic.tygh.ru/kiltumbook";
+    RESTIC_PASSWORD_FILE = "~/.config/restic/password";
+    RESTIC_EXCLUDE_FILE = "~/.config/restic/exclude";
   };
   programs.ssh = {
     enable = true;

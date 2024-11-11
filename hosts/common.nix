@@ -30,6 +30,7 @@
     alsa-utils # for fix sound troubles
     alsa-tools
     procps
+    restic
   ];
   nix.settings.experimental-features = [
     "nix-command"
