@@ -170,7 +170,7 @@
 
   };
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "mcedit";
     RESTIC_REPOSITORY_FILE = "/etc/nixos/hosts/kiltum/restic_repository_file";
     RESTIC_PASSWORD_FILE = "/etc/nixos/hosts/kiltum/restic_password_file";
   };
