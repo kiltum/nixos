@@ -24,6 +24,8 @@
     recursive = true;
   };
 
+  home.file.".local/share/applications/kitty.desktop".source = ../../kitty/kitty.desktop;
+
   # encode the file content in nix configuration file directly
   # home.file.".xxx".text = ''
   #     xxx
