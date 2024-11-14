@@ -52,7 +52,7 @@
       "$HOME/.var"
 
     ];
-    backupPrepareCommand = "${pkgs.restic}/bin/restic unlock"; # necessary to prevent locks from persisting indefinitely. See more:
+    backupPrepareCommand = "/run/current-system/sw/bin/sleep 30 && ${pkgs.restic}/bin/restic unlock"; # necessary to prevent locks from persisting indefinitely. See more:
     # https://forum.restic.net/t/restic-unlock-automation/5511
     extraBackupArgs = [
       "--exclude-caches"
