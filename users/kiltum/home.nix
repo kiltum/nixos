@@ -68,6 +68,7 @@
     ansible
     ansible-lint
     pinentry-all
+    libreoffice-fresh
   ];
 
   # basic configuration of git, please change to your own
