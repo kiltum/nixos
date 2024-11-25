@@ -103,7 +103,7 @@ fi;
 #fi;
 
 # Set the terminal title and prompt.
-PS1="\[${white}\][\[${userStyle}\]\u"; # username
+PS1="\[${white}\][\[${userStyle}\]\t \u"; # username
 PS1+="\[${hostStyle}\]@\h"; # host
 PS1+="\[${white}\] ";
 PS1+="\[${green}\]\W"; # working directory full path
