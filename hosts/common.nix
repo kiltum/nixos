@@ -31,6 +31,8 @@
     alsa-tools
     procps
     restic
+    hplip
+    
   ];
   nix.settings.experimental-features = [
     "nix-command"
